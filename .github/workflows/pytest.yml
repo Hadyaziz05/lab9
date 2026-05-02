@@ -15,4 +15,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
       - name: Run pytest
-        run: python -m pytest -v scripts/ --pythonpath=scripts
+        run: python -m pytest -v scripts/test_*.py
