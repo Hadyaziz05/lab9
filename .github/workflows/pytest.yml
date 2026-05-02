@@ -17,7 +17,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install pytest
-      - name: Run pytest
-        run: python -m pytest -v scripts/
+      - name: Run pytest (generate junit xml)
+        run: python -m pytest -v scripts/ --junitxml=pytest-report.xml
         env:
           PYTHONPATH: scripts
+      - name: Upload test report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-report_${{ matrix.os }}
+          path: pytest-report.xml
